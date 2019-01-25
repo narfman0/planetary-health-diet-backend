@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+wheel = "*"
+twine = "*"
+google-cloud-datastore = "*"
+flask-restplus = "*"
+inflection = "*"
+grpcio = "*"
+gunicorn = "*"
+
+[dev-packages]
+pytest-cov = "*"
+pytest-black = "*"
+"pytest-flake8" = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.7"

@@ -1,0 +1,3 @@
+entrypoint: gunicorn -b :$PORT phd.wsgi:app
+runtime: python37
+service: phd
