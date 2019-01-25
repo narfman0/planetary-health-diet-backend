@@ -1,7 +1,7 @@
 from flask_restplus import Resource
 
-from phd.food_groups import controller, models
-from phd.food_groups.api import api
+from phd.api.food_groups import controller, models
+from phd.api.food_groups.api import api
 
 
 @api.route("/")

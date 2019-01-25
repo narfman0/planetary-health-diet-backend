@@ -1,6 +1,6 @@
 from flask_restplus import fields
 
-from phd.food_groups.api import api
+from phd.api.food_groups.api import api
 
 food_group = api.model(
     "Food Group",

@@ -6,7 +6,7 @@ with warnings.catch_warnings():
     warnings.simplefilter("ignore")
     from flask import Flask, render_template
 
-from phd import api
+from phd.api import api
 
 
 def create_app():

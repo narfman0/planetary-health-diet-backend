@@ -1,6 +1,6 @@
 from flask_restplus import fields
 
-from phd.recipes.api import api
+from phd.api.recipes.api import api
 
 recipe_ingredient = api.model(
     "Recipe ingredient",

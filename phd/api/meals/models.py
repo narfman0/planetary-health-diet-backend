@@ -1,6 +1,6 @@
 from flask_restplus import fields
 
-from phd.meals.api import api
+from phd.api.meals.api import api
 
 meal_serving = api.model(
     "Meal serving", {"recipe_id": fields.Integer, "servings": fields.Float}

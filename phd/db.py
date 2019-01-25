@@ -17,7 +17,4 @@ def get_entities(kind, key=None, value=None):
 
 
 def get_entity(kind, key, value):
-    query = datastore.Client().query(kind=kind)
-    query.add_filter(key, "=", value)
-    for item in query.fetch():
-        return dict(item)
+    return (get_entities(kind, key, value) or [None])[0]

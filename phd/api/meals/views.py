@@ -1,7 +1,7 @@
 from flask_restplus import Resource
 
-from phd.meals import controller, models
-from phd.meals.api import api
+from phd.api.meals import controller, models
+from phd.api.meals.api import api
 
 parser = api.parser()
 parser.add_argument("userID", type=int)

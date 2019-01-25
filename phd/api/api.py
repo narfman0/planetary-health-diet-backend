@@ -5,11 +5,11 @@ with warnings.catch_warnings():
     from flask import Blueprint
     from flask_restplus import Api
 
-from phd.food_groups import api as ns_food_groups
-from phd.ingredients import api as ns_ingredients
-from phd.meals import api as ns_meals
-from phd.recipes import api as ns_recipes
-from phd.users import api as ns_users
+from phd.api.food_groups import api as ns_food_groups
+from phd.api.ingredients import api as ns_ingredients
+from phd.api.meals import api as ns_meals
+from phd.api.recipes import api as ns_recipes
+from phd.api.users import api as ns_users
 
 
 blueprint = Blueprint("api", __name__)
