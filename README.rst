@@ -1,5 +1,5 @@
 planetary-health-diet-backend
-==============
+=============================
 
 .. image:: https://badge.fury.io/py/planetary-health-diet-backend.png
     :target: https://badge.fury.io/py/planetary-health-diet-backend
@@ -8,13 +8,6 @@ planetary-health-diet-backend
     :target: https://travis-ci.org/narfman0/planetary-health-diet-backend
 
 Backend controlling cloud resources for user, ingredients, recipes, and meals
-
-Installation
-------------
-
-Install via pip::
-
-    pip install planetary-health-diet-backend
 
 Development
 -----------
@@ -26,9 +19,17 @@ Run test suite to ensure everything works::
 Release
 -------
 
-To publish your plugin to pypi, sdist and wheels are registered, created and uploaded with::
+To deploy to cloud, run::
 
-    make release
+    make deploy
+
+TODO
+----
+
+* Create users
+* Support users creating ingredients, recipes, and meals
+* Show user breakdown for meals over variable time intervals - day, week, month
+* Make feature to generalize ingredients/recipes (?)
 
 License
 -------
