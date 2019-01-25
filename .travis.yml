@@ -1,4 +1,5 @@
 dist: xenial
+install: pip install pipenv
 language: python
 python: 3.7
 script: make test

@@ -17,8 +17,9 @@ FOOD_GROUPS = [
 ]
 
 total_grams = sum([food_group.grams for food_group in FOOD_GROUPS])
-for food_group in FOOD_GROUPS:
+for i, food_group in enumerate(FOOD_GROUPS):
     food_group.ratio = food_group.grams / total_grams
+    food_group.id = i
 
 
 def list_food_groups():

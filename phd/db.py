@@ -9,25 +9,15 @@ from phd import log
 logger = log.create_logger(__name__)
 
 
-def get_entities(namespace, kind, key, value):
-    entities = []
-    query = datastore.Client(namespace=namespace).query(kind=kind)
-    query.add_filter(key, "=", value)
-    for item in query.fetch():
-        item_id = item.get(key, None)
-        if item_id is None:
-            continue
-        if item_id == value:
-            entities.append(dict(item))
-    return entities
+def get_entities(kind, key=None, value=None):
+    query = datastore.Client().query(kind=kind)
+    if key and value:
+        query.add_filter(key, "=", value)
+    return [dict(item) for item in query.fetch()]
 
 
-def get_entity(namespace, kind, key, value):
-    query = datastore.Client(namespace=namespace).query(kind=kind)
+def get_entity(kind, key, value):
+    query = datastore.Client().query(kind=kind)
     query.add_filter(key, "=", value)
     for item in query.fetch():
-        item_id = item.get(key, None)
-        if item_id is None:
-            continue
-        if item_id == value:
-            return dict(item)
+        return dict(item)
