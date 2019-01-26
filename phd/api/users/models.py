@@ -6,6 +6,6 @@ user = api.model(
     "User",
     {
         "id": fields.Integer(description="ID of user", example=1),
-        "name": fields.String(description="Name of user", example="Steve"),
+        "email": fields.String(description="Email of user", example="jim@example.com"),
     },
 )

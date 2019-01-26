@@ -11,6 +11,9 @@ flask-restplus = "*"
 inflection = "*"
 grpcio = "*"
 gunicorn = "*"
+flask-security = "*"
+sqlalchemy = "*"
+bcrypt = "*"
 
 [dev-packages]
 pytest-cov = "*"

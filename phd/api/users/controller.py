@@ -1,5 +1,9 @@
-from phd import db
+from phd.security.datastore import user_datastore
 
 
 def get_user(user_id):
-    return db.get_entity("users", "id", user_id)
+    return user_datastore.get_user(user_id)
+
+
+def list_users():
+    raise NotImplementedError
