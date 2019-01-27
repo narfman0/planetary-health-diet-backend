@@ -4,14 +4,9 @@
 
 {% block content %}
  <form method="POST">
-  Name:<br>
-  <input type="text" name="name" value="Apple"><br>
-  Food group:<br>
-  <select name="foodGroup">
-    {% for food_group in food_groups %}
-    <option value="{{ food_group.id }}">{{ food_group.name }}</option>
-    {% endfor %}
-  </select>
+  {{ form.csrf_token }}
+  {{ form.name.label }} {{ form.name() }} <br />
+  {{ form.food_group.label }} {{ form.food_group() }}
   <input type="submit" value="Submit">
 </form> 
 {% endblock %}
