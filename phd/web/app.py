@@ -9,7 +9,7 @@ with warnings.catch_warnings():
     from flask import Blueprint
 
 from phd import db
-from phd.api.food_groups.controller import FOOD_GROUPS as food_groups
+from phd.models import food_groups
 
 
 blueprint = Blueprint("web", __name__)
@@ -34,4 +34,6 @@ def create_ingredient():
         db.put_entity("ingredient", item)
         return redirect("/")
     else:
-        return render_template("create_ingredient.html", food_groups=food_groups)
+        return render_template(
+            "create_ingredient.html", food_groups=food_groups.list_food_groups()
+        )
