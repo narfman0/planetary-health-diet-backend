@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Ingredient{% endblock %}
+
+{% block content %}
+ <form method="POST">
+  Name:<br>
+  <input type="text" name="name" value="Apple"><br>
+  Food group:<br>
+  <select name="foodGroup">
+    {% for food_group in food_groups %}
+    <option value="{{ food_group.id }}">{{ food_group.name }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Submit">
+</form> 
+{% endblock %}
