@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Recipe{% endblock %}
+
+{% block content %}
+ <form method="POST">
+  {{ form.csrf_token }}
+  {{ form.name.label }} {{ form.name() }} <br />
+  {{ form.servings.label }} {{ form.servings() }} <br />
+  {{ form.ingredients.label }} {{ form.ingredients() }} <br />
+  {{ form.calories_per_serving.label }} {{ form.calories_per_serving() }} <br />
+  <input type="submit" value="Submit">
+</form> 
+{% endblock %}

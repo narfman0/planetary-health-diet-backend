@@ -16,5 +16,11 @@ recipe = api.model(
         "id": fields.Integer(description="Id of recipe", example=13),
         "name": fields.String(description="Name of recipe", example="Calzone"),
         "ingredients": fields.List(fields.Nested(recipe_ingredient)),
+        "servings": fields.Integer(
+            description="Number of servings recipe provides", example=4, default=1
+        ),
+        "calories_per_serving": fields.Integer(
+            description="Number of calories per serving", example=200
+        ),
     },
 )

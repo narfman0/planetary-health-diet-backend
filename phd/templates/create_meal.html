@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Meal{% endblock %}
+
+{% block content %}
+ <form method="POST">
+  {{ form.csrf_token }}
+  {{ form.date.label }} {{ form.date() }} <br />
+  {{ form.servings.label }} {{ form.servings() }}
+  <input type="submit" value="Submit">
+</form> 
+{% endblock %}

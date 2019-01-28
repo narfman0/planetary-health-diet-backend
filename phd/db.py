@@ -15,7 +15,12 @@ def get_entities(kind, key=None, value=None):
     query = datastore.Client().query(kind=kind)
     if key and value:
         query.add_filter(key, "=", value)
-    return [dict(item) for item in query.fetch()]
+    results = []
+    for item in query.fetch():
+        addition = dict(item)
+        addition["id"] = int(item.id)
+        results.append(addition)
+    return results
 
 
 def get_entity(kind, key, value):

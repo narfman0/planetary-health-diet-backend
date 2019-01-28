@@ -4,9 +4,30 @@
 
 {% block content %}
 <div>
-     <h2>Ingredients <a href="/create/ingredient/">Create</a></h2>
+    <h2>Ingredients <a href="/create/ingredient/">Create</a></h2>
     {% for ingredient in ingredients %}
-        <span>{{ ingredient.name }}</span><span>{{ ingredient.food_group_id }}</span>
+        <div>
+            <span>{{ ingredient.name }}</span> - 
+            <span>{{ food_groups[ingredient.food_group_id].name }}</span>
+        </div>
+    {% endfor %}
+</div>
+<div>
+    <h2>Recipes <a href="/create/recipe/">Create</a></h2>
+    {% for recipe in recipes %}
+        <div>
+        <h3>{{ recipe.name }}</h3>
+        {% for ingredient in recipe.ingredients %}
+        <span>{{ ingredient.name }}</span> - 
+        <span>{{ ingredient.amount }}g</span><br />
+        {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+<div>
+    <h2>Meals <a href="/create/meal/">Create</a></h2>
+    {% for meal in meals %}
+        <span>{{ meal.name }}</span><span>{{ meal.date }}</span>
     {% endfor %}
 </div>
 {% endblock %}
