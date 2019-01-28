@@ -31,6 +31,9 @@ run-app:
 	pipenv run flask run
 
 run-test:
+	PHD_DB_PASSWORD='pass1' \
+	PHD_PASSWORD_SALT='salt1' \
+	PHD_SECRET_KEY='secretkey1' \
 	pipenv run pytest --flake8 --black --cov=phd --cov-report term-missing tests/
 
 release: clean ## package and upload a release
