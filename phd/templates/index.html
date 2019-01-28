@@ -18,8 +18,9 @@
         <div>
         <h3>{{ recipe.name }}</h3>
         {% for ingredient in recipe.ingredients %}
-        <span>{{ ingredient.name }}</span> - 
-        <span>{{ ingredient.amount }}g</span><br />
+            <span>{{ ingredient.name }}</span> - 
+            <span>{{ ingredient.amount }}g</span>
+            <br/>
         {% endfor %}
         </div>
     {% endfor %}
@@ -27,7 +28,12 @@
 <div>
     <h2>Meals <a href="/create/meal/">Create</a></h2>
     {% for meal in meals %}
-        <span>{{ meal.name }}</span><span>{{ meal.date }}</span>
+        <span>{{ meal.date }}</span><br/>
+        {% for portion in meal['portions'] %}
+            <span>{{ portion.name }}</span>
+            <span>{{ portion.servings }} servings</span>
+            <br/>
+        {% endfor %}
     {% endfor %}
 </div>
 {% endblock %}

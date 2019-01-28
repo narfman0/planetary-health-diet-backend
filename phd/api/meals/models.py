@@ -3,13 +3,17 @@ from flask_restplus import fields
 from phd.api.meals.api import api
 
 meal_serving = api.model(
-    "Meal serving", {"recipe_id": fields.Integer, "servings": fields.Float}
+    "Meal portion",
+    {
+        "id": fields.Integer("Recipe ID", example=1),
+        "servings": fields.Float("Number of servings from recipe"),
+    },
 )
 
 meal = api.model(
     "Meal",
     {
-        "servings": fields.List(fields.Nested(meal_serving)),
+        "portions": fields.List(fields.Nested(meal_serving)),
         "date": fields.DateTime(
             definition="Time of meal",
             dt_format="iso8601",

@@ -1,4 +1,5 @@
 import warnings
+from datetime import datetime
 
 from flask import redirect, render_template
 from flask_security import login_required
@@ -22,10 +23,14 @@ def index():
     ingredients = db.get_entities("ingredient", "user_id", flask_login.current_user.id)
     ingredient_map = {int(ingredient["id"]): ingredient for ingredient in ingredients}
     recipes = db.get_entities("recipe", "user_id", flask_login.current_user.id)
+    recipe_map = {int(recipe["id"]): recipe for recipe in recipes}
     meals = db.get_entities("meal", "user_id", flask_login.current_user.id)
     for recipe in recipes:
         for ingredient in recipe["ingredients"]:
             ingredient["name"] = ingredient_map[int(ingredient["id"])]["name"]
+    for meal in meals:
+        for portion in meal["portions"]:
+            portion["name"] = recipe_map[int(portion["id"])]["name"]
     return render_template(
         "index.html",
         food_groups=food_groups.list_food_groups(),
@@ -80,3 +85,29 @@ def create_recipe():
         db.put_entity("recipe", item)
         return redirect("/")
     return render_template("create_recipe.html", form=form)
+
+
+@blueprint.route("/create/meal/", methods=["GET", "POST"])
+@login_required
+def create_meal():
+    form = forms.CreateMealForm()
+    form.date.data = datetime.utcnow()
+    if form.validate_on_submit():
+        portions = []
+        for line in form.data["servings"].splitlines():
+            recipe, servings = line.rsplit(" ", 1)
+            recipe_candidate = db.get_entity("recipe", "name", recipe)
+            if recipe_candidate:
+                recipe = recipe_candidate["id"]
+            else:
+                raise Exception(f"No recipe found with name {recipe}")
+            servings = float(servings)
+            portions.append(dict(id=recipe, servings=servings))
+        item = dict(
+            date=form.data["date"].isoformat(),
+            portions=portions,
+            user_id=flask_login.current_user.id,
+        )
+        db.put_entity("meal", item)
+        return redirect("/")
+    return render_template("create_meal.html", form=form)

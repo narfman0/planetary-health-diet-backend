@@ -5,7 +5,7 @@ from phd.api.recipes.api import api
 recipe_ingredient = api.model(
     "Recipe ingredient",
     {
-        "ingredient_id": fields.Integer,
+        "id": fields.Integer("Recipe ID", example=1),
         "amount": fields.Float("Quantity of ingredient used (in grams)", example=25.3),
     },
 )
