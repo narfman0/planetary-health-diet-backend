@@ -1,7 +1,14 @@
-from flask_security import SQLAlchemySessionUserDatastore
+from phd import settings
 
-from phd.security.database import db_session, init_db
-from phd.security.models import User, Role
+if settings.DB_ENGINE == "ndb":
+    from phd.security.ndb import datastore, models
 
-user_datastore = SQLAlchemySessionUserDatastore(db_session, User, Role)
-init_db()
+    user_datastore = datastore.NDBUserDatastore(models.User, models.Role)
+else:
+    from flask_security import SQLAlchemySessionUserDatastore
+    from phd.security.sql import datastore, models
+
+    user_datastore = SQLAlchemySessionUserDatastore(
+        datastore.db_session, models.User, models.Role
+    )
+    datastore.init_db()
