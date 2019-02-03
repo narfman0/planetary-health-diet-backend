@@ -1,5 +1,5 @@
 import warnings
-from datetime import datetime
+from datetime import date, datetime
 
 from flask import redirect, render_template
 from flask_security import login_required
@@ -11,7 +11,7 @@ with warnings.catch_warnings():
 
 from phd import db
 from phd.models import food_groups
-from phd.web import forms
+from phd.web import controller, forms
 
 
 blueprint = Blueprint("web", __name__)
@@ -24,7 +24,11 @@ def index():
     ingredient_map = {int(ingredient["id"]): ingredient for ingredient in ingredients}
     recipes = db.get_entities("recipe", "user_id", flask_login.current_user.id)
     recipe_map = {int(recipe["id"]): recipe for recipe in recipes}
-    meals = db.get_entities("meal", "user_id", flask_login.current_user.id)
+    today_filter = ("date", ">", datetime.combine(date.today(), datetime.min.time()))
+    meals = db.get_entities(
+        "meal", "user_id", flask_login.current_user.id, filters=[today_filter]
+    )
+    food_group_proportions = controller.get_food_group_proportions(meals)
     for recipe in recipes:
         for ingredient in recipe["ingredients"]:
             ingredient["name"] = ingredient_map[int(ingredient["id"])]["name"]
@@ -37,6 +41,7 @@ def index():
         ingredients=ingredients,
         recipes=recipes,
         meals=meals,
+        food_group_proportions=food_group_proportions,
     )
 
 

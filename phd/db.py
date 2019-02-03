@@ -11,10 +11,12 @@ def delete_entity(kind, key):
     client.delete(key)
 
 
-def get_entities(kind, key=None, value=None):
+def get_entities(kind, key=None, value=None, filters=[]):
     query = datastore.Client().query(kind=kind)
     if key and value:
         query.add_filter(key, "=", value)
+    for filter_key, filter_type, filter_value in filters:
+        query.add_filter(filter_key, filter_type, filter_value)
     results = []
     for item in query.fetch():
         addition = dict(item)

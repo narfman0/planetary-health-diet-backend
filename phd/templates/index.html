@@ -36,4 +36,14 @@
         {% endfor %}
     {% endfor %}
 </div>
+<div>
+    <h2>Todays proportions</h2>
+    {% for food_group in food_groups %}
+    {% with %}
+        {% set food_group_proportion = food_group_proportions[food_group.id] %}
+        <span>{{ food_group.name }}</span><br/>
+        <span>{{ food_group.grams }}/{{ food_group_proportion }}</span><br/>
+    {% endwith %}
+    {% endfor %}
+</div>
 {% endblock %}

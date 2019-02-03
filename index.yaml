@@ -1,0 +1,5 @@
+indexes:
+- kind: meal
+  properties:
+  - name: user_id
+  - name: date
