@@ -38,12 +38,24 @@
 </div>
 <div>
     <h2>Todays proportions</h2>
+    <table>
+      <tr>
+        <th>Food Group</th>
+        <th>Consumed (grams)</th>
+        <th>Expected (grams)</th>
+        <th>% daily value</th>
+      </tr>
     {% for food_group in food_groups %}
     {% with %}
         {% set food_group_proportion = food_group_proportions[food_group.id] %}
-        <span>{{ food_group.name }}</span><br/>
-        <span>{{ food_group_proportion }}/{{ food_group.grams }}</span><br/>
+        <tr>
+          <td>{{ food_group.name }}</td>
+          <td>{{ food_group_proportion }}</td>
+          <td>{{ food_group.grams }}</td>
+          <td>{{ food_group_proportion/food_group.grams }}</td>
+        </tr>
     {% endwith %}
     {% endfor %}
+    </table>
 </div>
 {% endblock %}

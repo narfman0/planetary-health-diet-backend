@@ -1,23 +1,32 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - PHD</title>
-<nav>
-  <h1>PHD</h1>
-  <ul>
-    {% if current_user.is_authenticated %}
-      Hi {{ current_user.email }}
-      <a href="{{ url_for('security.logout') }}">Log Out</a>
-    {% else %}
-      <li><a href="{{ url_for('security.register') }}">Register</a>
-      <li><a href="{{ url_for('security.login') }}">Log In</a>
-    {% endif %}
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} - PHD</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+  </head>
+  <body>
+    <nav>
+      <h1>PHD</h1>
+      <ul>
+        {% if current_user.is_authenticated %}
+          Hi {{ current_user.email }}
+          <a href="{{ url_for('security.logout') }}">Log Out</a>
+        {% else %}
+          <li><a href="{{ url_for('security.register') }}">Register</a>
+          <li><a href="{{ url_for('security.login') }}">Log In</a>
+        {% endif %}
+      </ul>
+    </nav>
+    <section class="content">
+      <header>
+        {% block header %}{% endblock %}
+      </header>
+      {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+      {% block content %}{% endblock %}
+    </section>
+  </body>
+</html>
