@@ -24,7 +24,8 @@ def index():
     ingredient_map = {int(ingredient["id"]): ingredient for ingredient in ingredients}
     recipes = db.get_entities("recipe", "user_id", flask_login.current_user.id)
     recipe_map = {int(recipe["id"]): recipe for recipe in recipes}
-    today_filter = ("date", ">", datetime.combine(date.today(), datetime.min.time()))
+    today_beginning = datetime.combine(date.today(), datetime.min.time()).isoformat()
+    today_filter = ("date", ">", today_beginning)
     meals = db.get_entities(
         "meal", "user_id", flask_login.current_user.id, filters=[today_filter]
     )

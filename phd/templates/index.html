@@ -42,7 +42,7 @@
     {% with %}
         {% set food_group_proportion = food_group_proportions[food_group.id] %}
         <span>{{ food_group.name }}</span><br/>
-        <span>{{ food_group.grams }}/{{ food_group_proportion }}</span><br/>
+        <span>{{ food_group_proportion }}/{{ food_group.grams }}</span><br/>
     {% endwith %}
     {% endfor %}
 </div>

@@ -26,6 +26,10 @@ def get_entities(kind, key=None, value=None, filters=[]):
 
 
 def get_entity(kind, key, value):
+    if key == "id":
+        client = datastore.Client()
+        entity_key = client.key(kind, value)
+        return client.get(entity_key)
     return (get_entities(kind, key, value) or [None])[0]
 
 

@@ -14,10 +14,7 @@ def get_food_group_proportions(meals):
                 ingredient_id = recipe_ingredient["id"]
                 ingredient = db.get_entity("ingredient", "id", ingredient_id)
                 food_group_id = ingredient["food_group_id"]
-                current_group_grams = proportion_map[food_group_id]
-                proportion_map[food_group_id] = (
-                    current_group_grams
-                    * recipe_ingredient["amount"]
-                    * (consumed_servings / recipe_servings)
+                proportion_map[food_group_id] += (
+                    recipe_ingredient["amount"] * consumed_servings / recipe_servings
                 )
     return proportion_map
