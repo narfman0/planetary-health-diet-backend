@@ -6,10 +6,16 @@ from phd import settings
 
 if settings.DB_ENGINE == "sqlite":
     engine = create_engine("sqlite:////tmp/phd.db", convert_unicode=True)
-else:
+elif settings.DB_ENGINE == "mysql":
     connection_string = (
         f"mysql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}"
-        + f"@{settings.DB_HOSTNAME}/{settings.DB_NAME}"
+        + f"@{settings.DB_HOSTNAME}:{settings.DB_PORT}/{settings.DB_NAME}"
+    )
+    engine = create_engine(connection_string, convert_unicode=True)
+elif settings.DB_ENGINE == "postgres":
+    connection_string = (
+        f"postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}"
+        + f"@{settings.DB_HOSTNAME}:{settings.DB_PORT}/{settings.DB_NAME}"
     )
     engine = create_engine(connection_string, convert_unicode=True)
 db_session = scoped_session(

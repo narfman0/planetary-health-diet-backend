@@ -1,4 +1,4 @@
 entrypoint: gunicorn -b :$PORT phd.wsgi:app
 runtime: python37
 env_variables:
-  PHD_DB_ENGINE: 'ndb'
+  PHD_DB_ENGINE: 'postgresql'

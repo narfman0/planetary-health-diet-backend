@@ -35,7 +35,7 @@ class User(DSBase, UserMixin):
     def __init__(self, email, password, *args, **kwargs):
         self.email = email
         self.password = password
-        for key, value in kwargs:
+        for key, value in kwargs.items():
             setattr(self, key, value)
         self._roles_cache = []
         roles = [r.key for r in kwargs.pop("roles", [])]
